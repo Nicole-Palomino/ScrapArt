@@ -1,0 +1,53 @@
+/* Fuentes */
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Tarjetas de productos */
+.producto-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.producto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.producto-img img {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Paleta de colores personalizada */
+.bg-primary {
+    background-color: #2c3e50 !important;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+}
+
+.card .img-fluid {
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-size: 1.1rem;
+}
+
+.card-text {
+    min-height: 48px;
+}

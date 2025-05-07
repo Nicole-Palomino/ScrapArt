@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mi Catálogo de Productos</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Google Fonts (Opcional) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-light d-flex flex-column min-vh-100">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">🛍️ Mi Catálogo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Inicio</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">Contacto</a>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenedor Principal -->
+    <main class="container my-5 flex-grow-1">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <input type="text" id="searchInput" class="form-control" placeholder="Buscar producto...">
+            </div>
+            <div class="col-md-6 mt-2 mt-md-0">
+                <select id="categoryFilter" class="form-select">
+                    <option value="all">Todas las categorías</option>
+                    <option value="ropa">Ropa</option>
+                    <option value="electrodomesticos">Electrodomésticos</option>
+                    <option value="libros">Libros</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Productos -->
+        <div class="row g-4" id="productosContainer">
+            <!-- Aquí se cargarán los productos -->
+        </div>
+
+        <!-- Botón flotante de carrito -->
+        <button id="btnCarrito" class="btn btn-success position-fixed bottom-0 end-0 m-3 d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#carritoModal">
+            <i class="bi bi-cart-fill"></i> Carrito (<span id="contadorCarrito">0</span>)
+        </button>
+
+        <!-- Spinner de carga -->
+        <div id="loadingSpinner" class="d-flex justify-content-center align-items-center vh-50 d-none">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Cargando productos...</span>
+            </div>
+        </div>
+
+        <!-- Paginación -->
+        <nav aria-label="Paginación" class="mt-5">
+            <ul class="pagination justify-content-center" id="pagination">
+                <!-- Generado dinámicamente -->
+            </ul>
+        </nav>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white text-center py-3 mt-auto">
+        <p class="mb-0">&copy; 2025 Mi Empresa. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script personalizado -->
+    <script src="script.js"></script>
+
+    <!-- Modal de Detalles del Producto -->
+    <div class="modal fade" id="productoModal" tabindex="-1" aria-labelledby="productoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productoModalLabel">Detalles del Producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="modalImagen" src="" class="img-fluid mb-3 rounded" alt="Producto">
+                    <h4 id="modalNombre"></h4>
+                    <p id="modalDescripcion" class="text-muted"></p>
+                    <p><strong>Categoría:</strong> <span id="modalCategoria"></span></p>
+
+                    <!-- Botón opcional: Agregar al carrito -->
+                    <button class="btn btn-success" onclick="agregarAlCarritoDesdeModal()">
+                        <i class="bi bi-cart-plus"></i> Agregar al carrito
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal del Carrito -->
+    <div class="modal fade" id="carritoModal" tabindex="-1" aria-labelledby="carritoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="carritoModalLabel">Mi Carrito</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="listaCarrito" class="mb-4"></div>
+
+                    <!-- Mensaje si está vacío -->
+                    <p id="carritoVacio" class="text-muted text-center">Tu carrito está vacío.</p>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir comprando</button>
+                    <a id="btnWhatsApp" href="#" target="_blank" class="btn btn-success">Enviar por WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
